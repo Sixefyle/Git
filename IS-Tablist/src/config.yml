@@ -1,0 +1,16 @@
+
+#################
+#BOSSBAR MESSAGE#
+#################
+
+BossMessage: "&6&lIronSkillz &eVisiter notre site! &cwww.ironskillz.fr"
+
+################
+#TABLIST PREFIX#
+################
+
+Joueur: "&e[Joueur] "
+VIP: "&2[VIP] "
+Builder: "&9[Builder] "
+# Moderateur: ""
+Admin: "&4[Admin] "

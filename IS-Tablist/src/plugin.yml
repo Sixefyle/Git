@@ -1,0 +1,7 @@
+main: com.tablist.fr.Tablist
+name: IS-Tablist
+author: Sixefyle
+version: 0.1
+commands:
+   isr:
+    description: Reload le plugin
