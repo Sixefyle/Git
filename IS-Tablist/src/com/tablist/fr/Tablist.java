@@ -10,12 +10,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import me.confuser.barapi.BarAPI;
 
 public class Tablist extends JavaPlugin implements Listener{
 	
 	FileConfiguration config;
+	Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
+	Team team = null;
 	
 	public void onEnable() 
 	{
@@ -30,6 +34,7 @@ public class Tablist extends JavaPlugin implements Listener{
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e)
 	{
@@ -39,18 +44,63 @@ public class Tablist extends JavaPlugin implements Listener{
 
 		if(p.hasPermission("perms.admin"))
 		{
-			p.setPlayerListName(config.getString("Admin").replace("&", "§") + p.getName());
+			if(board.getTeam(p.getName()) == null) // si le joueur n'a pas de team alors on en crée une
+			{
+				team = board.registerNewTeam(p.getName()); // La team se nommera par sont pseudo
+			}
+			else
+			{
+				team = board.getTeam(p.getName()); // si non on prend la team avec sont pseudo
+			}
+			team.setPrefix(config.getString("Admin").replace("&", "§")); // On met en préfix ce que le joueur a mis dans sa config
+			team.addPlayer(p); // on ajoute le joueur dans la team
+			team.setAllowFriendlyFire(true); // on active le friendlyFire
+			
+			p.setPlayerListName(config.getString("Admin").replace("&", "§") + p.getName()); // Parreil sauf que c'est dans la TabList
 		} 
 		else if(p.hasPermission("perms.vip"))
 		{
+			if(board.getTeam(p.getName()) == null)
+			{
+				team = board.registerNewTeam(p.getName());
+			}
+			else
+			{
+				team = board.getTeam(p.getName());
+			}
+			team.setPrefix(config.getString("VIP").replace("&", "§"));
+			team.addPlayer(p);
+			team.setAllowFriendlyFire(true); 
 			p.setPlayerListName(config.getString("VIP").replace("&", "§") + p.getName());
 		}
 		else if(p.hasPermission("perms.builder"))
 		{
+			if(board.getTeam(p.getName()) == null)
+			{
+				team = board.registerNewTeam(p.getName());
+			}
+			else
+			{
+				team = board.getTeam(p.getName());
+			}
+			team.setPrefix(config.getString("Builder").replace("&", "§"));
+			team.addPlayer(p);
+			team.setAllowFriendlyFire(true); 
 			p.setPlayerListName(config.getString("Builder").replace("&", "§") + p.getName());
 		}
 		else
 		{
+			if(board.getTeam(p.getName()) == null)
+			{
+				team = board.registerNewTeam(p.getName());
+			}
+			else
+			{
+				team = board.getTeam(p.getName());
+			}
+			team.setPrefix(config.getString("Joueur").replace("&", "§"));
+			team.addPlayer(p);
+			team.setAllowFriendlyFire(true); 
 			p.setPlayerListName(config.getString("Joueur").replace("&", "§") + p.getName());
 		}
 	}
