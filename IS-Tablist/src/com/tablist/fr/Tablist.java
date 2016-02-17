@@ -13,8 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import me.confuser.barapi.BarAPI;
-
 public class Tablist extends JavaPlugin implements Listener{
 	
 	FileConfiguration config;
@@ -40,8 +38,6 @@ public class Tablist extends JavaPlugin implements Listener{
 	{
 		Player p = e.getPlayer();
 		
-		BarAPI.setMessage(config.getString("BossMessage").replace("&", "§").replace("{pseudo}", getName()));
-
 		if(p.hasPermission("perms.admin"))
 		{
 			if(board.getTeam(p.getName()) == null) // si le joueur n'a pas de team alors on en crée une
