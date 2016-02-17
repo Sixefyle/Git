@@ -1,0 +1,6 @@
+##############
+#JOIN MESSAGE#
+##############
+
+JoinMessage : "[pseudo] &evient de se connecté sur le serveur"
+FirstJoinMessage: "&6[pseudo] &evient de se connecter pour la premier fois sur le serveur! Bienvenue &6[pseudo]&e sur &lIronSkillz"

@@ -1,0 +1,6 @@
+main: com.joinmessage.fr.Main
+name: IS-JoinMessage
+author: Sixefyle
+version: 0.1
+commands:
+   jmtest:
